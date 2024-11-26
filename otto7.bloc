@@ -1,0 +1,2369 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <toolbox>toolbox_arduino_all</toolbox>
+  <block type="base_setup" id="2zmA|wKkX:bU{06N4_Fs" x="-47" y="-225">
+    <statement name="DO">
+      <block type="variables_set_init" id="K6uy(S}:Y^YJUH+qOgL]">
+        <field name="VAR">command</field>
+        <field name="VARIABLE_SETTYPE_TYPE">CHARACTER</field>
+        <value name="VALUE">
+          <block type="text_char" id="~[:]vF4wJF?-?:N|YZCJ">
+            <field name="TEXT">0</field>
+          </block>
+        </value>
+        <next>
+          <block type="otto_configuration" id="i26i**X=FPpleiYMNIbY">
+            <field name="PIN_YL">2</field>
+            <field name="PIN_YR">3</field>
+            <field name="PIN_RL">4</field>
+            <field name="PIN_RR">5</field>
+            <field name="PIN_Buzzer">13</field>
+            <next>
+              <block type="otto_arms_init" id="Aqj*c^TTyMV9$dC+#,$T">
+                <field name="PIN_AL">6</field>
+                <field name="PIN_AR">7</field>
+                <next>
+                  <block type="mouth_init" id="vCAS:h3yA8o@G+7Jn?fo">
+                    <field name="PIN_CLK">A1</field>
+                    <field name="PIN_CS">A2</field>
+                    <field name="PIN_DIN">A3</field>
+                    <field name="Orientation">0</field>
+                    <next>
+                      <block type="soft_init" id="}%f%2bJnhgeKWLhsejJx">
+                        <field name="PIN_TX">12</field>
+                        <field name="PIN_RX">11</field>
+                        <field name="PINBAUDIOS">9600</field>
+                        <next>
+                          <block type="ultrasonic_sensor" id="42?m/Y1=p#3whp*%KjCS">
+                            <field name="US_NUMBER">1</field>
+                            <field name="PIN_TRIG">8</field>
+                            <field name="PIN_ECHO">9</field>
+                            <next>
+                              <block type="otto_home" id="8KP@k}E{P5E*@8X|gC0p">
+                                <next>
+                                  <block type="otto_arms_home" id="!8x?T)OvP@m?]@(PrSIR">
+                                    <next>
+                                      <block type="mouth_brightness" id="n#FED=TkbXq+}/$]:koP">
+                                        <value name="brightness">
+                                          <shadow type="math_number" id="#JR:fyQ~e*JInzw%-DiR">
+                                            <field name="NUM">7</field>
+                                          </shadow>
+                                        </value>
+                                        <next>
+                                          <block type="mouth_text" id="0oO22rj~jo9g=6uHN_T.">
+                                            <field name="input">I AM OTTO</field>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="base_loop" id="Pm1Gx^1JAUT@}u0s(u48" x="-45" y="205">
+    <statement name="LOOP">
+      <block type="controls_if" id="]M^p-/lXf]z1JEo,Z4/P">
+        <mutation else="1"></mutation>
+        <value name="IF0">
+          <block type="logic_compare" id="T50e^)kW:EV5pkYoA#v;">
+            <field name="OP">LT</field>
+            <value name="A">
+              <block type="ultrasonic_distance" id="iJ9gq[m_:cd[OL?z_~/c">
+                <field name="US_NUMBER">1</field>
+              </block>
+            </value>
+            <value name="B">
+              <shadow type="math_number" id="R~bRU8$4Nf|~]iv:|@g4">
+                <field name="NUM">15</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="otto_sound" id="e[(16jmW26[T$k08{^*=">
+            <field name="otto_sound">S_OhOoh2</field>
+            <next>
+              <block type="mouth_face" id="dY~EAUyeE^w+z7BxzP0W">
+                <field name="otto9_mouth_choice">smallSurprise</field>
+                <next>
+                  <block type="otto_move" id="v{,pGv~DW;J?(`#H8(;j">
+                    <field name="otto_move_sens">BACKWARD</field>
+                    <field name="otto_move_speed">1000</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <statement name="ELSE">
+          <block type="otto_home" id="mErdf{1e0HYbPay;iaR8">
+            <next>
+              <block type="otto_arms_home" id="[VejR!x[3q;ihi)2v6!j"></block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="controls_if" id="#b],=S?cQ+D)!Qn~[Aeg" disabled="true">
+            <mutation else="1"></mutation>
+            <value name="IF0">
+              <block type="button_touch_sensor2" id="d(*OqllPa]a~Z|-Uc~%%">
+                <field name="PIN_BUTTON">A0</field>
+                <field name="LOGIC">FALSE</field>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="otto_do" id="hNSz,5.L$%k+v(#B7-fG">
+                <field name="otto_do_movement">updown</field>
+                <field name="otto_move_speed">1000</field>
+                <field name="otto_dance_size">25</field>
+                <next>
+                  <block type="otto_sound" id="{,_eI,7liu7@6nN2RLte">
+                    <field name="otto_sound">S_cuddly</field>
+                    <next>
+                      <block type="mouth_face" id="Yv@a2{18W)E/?|#X|b:M">
+                        <field name="otto9_mouth_choice">heart</field>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <statement name="ELSE">
+              <block type="otto_home" id="mY7|nOHcNm*ZlRR`tRk(">
+                <next>
+                  <block type="otto_arms_home" id="X@XA!A+x+KTYupvKM[f8"></block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="controls_if" id="`,c~BKDvCbUYqp5]J+oO">
+                <value name="IF0">
+                  <block type="soft_available" id="EC?S`XEGibP]4y.q$J?m"></block>
+                </value>
+                <statement name="DO0">
+                  <block type="variables_set" id="K@Qj2ll00(yvskH@+@J(">
+                    <field name="VAR">command</field>
+                    <value name="VALUE">
+                      <block type="soft_read" id="W@}I_Ld25xRwng!_sy$t"></block>
+                    </value>
+                  </block>
+                </statement>
+                <next>
+                  <block type="controls_switch" id="l*hGu(p?(SK;jVOS{7,c">
+                    <mutation casebreak="61" default="1"></mutation>
+                    <field name="SWVAR">command</field>
+                    <value name="CASE0">
+                      <block type="text_char" id="9TQDA1gca,KOr;}4tr!)">
+                        <field name="TEXT">A</field>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="otto_move" id="0R:(]euN)%0W29dYIdJ,">
+                        <field name="otto_move_sens">FORWARD</field>
+                        <field name="otto_move_speed">1000</field>
+                        <next>
+                          <block type="otto_sound" id="l8HX?oc7^E0JO2GZsl}7">
+                            <field name="otto_sound">S_superHappy</field>
+                            <next>
+                              <block type="base_delay" id="M?!g~)B`m+$b$1V@HEvF">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="$5FXRi9W*MRUA#R*ud55">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="H?#l,s~ORqK3OIEwtRrK">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="Mr(IlI)qdG:O7,NaB|QE">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE1">
+                      <block type="text_char" id="(uEzI]]m+/n+K)e=`,eo">
+                        <field name="TEXT">B</field>
+                      </block>
+                    </value>
+                    <statement name="DO1">
+                      <block type="otto_move" id="P{,:Se|oG05auw!c[0~U">
+                        <field name="otto_move_sens">BACKWARD</field>
+                        <field name="otto_move_speed">1000</field>
+                        <next>
+                          <block type="otto_sound" id="OYGY$OCFH;w%]=Yi3VHb">
+                            <field name="otto_sound">S_superHappy</field>
+                            <next>
+                              <block type="base_delay" id="T=E[d(anFvMO?}sS+Ao}">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="w6Gp5.5zY|-+6eN06S9,">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="y5NKp4)D%JYpF@1PT,7g">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="I`fStTbRO@DVK-R10%nF">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE2">
+                      <block type="text_char" id="EOal[MwZKetI[xCX54FH">
+                        <field name="TEXT">C</field>
+                      </block>
+                    </value>
+                    <statement name="DO2">
+                      <block type="otto_move" id="3F1-APlh_-[E747f}H}(">
+                        <field name="otto_move_sens">LEFT</field>
+                        <field name="otto_move_speed">1000</field>
+                        <next>
+                          <block type="otto_sound" id="@}KICT^G1bo3:g%;[o0d">
+                            <field name="otto_sound">S_superHappy</field>
+                            <next>
+                              <block type="base_delay" id="uG@1L+oNgX[Wqjv9-Ie,">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="B!X/h{qoKHV5B]$HjkAe">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="zNgVUHODo##uI+iKU8gV">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="71LcPOS4OQ,+i}UQtl!s">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE3">
+                      <block type="text_char" id="tXdo!0@IuUsDT@{}b?Ls">
+                        <field name="TEXT">D</field>
+                      </block>
+                    </value>
+                    <statement name="DO3">
+                      <block type="otto_move" id="!|GA+`n20gz6haqb,AbB">
+                        <field name="otto_move_sens">RIGHT</field>
+                        <field name="otto_move_speed">1000</field>
+                        <next>
+                          <block type="otto_sound" id="ooVK+hTr;Lb}Y%tYknIu">
+                            <field name="otto_sound">S_superHappy</field>
+                            <next>
+                              <block type="base_delay" id=".U2}.p5~(yM)fCv:S3${">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="i+=5`In]`4RlE6s:PfH@">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="3]|63K9EMDiO7VH@@K!3">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="lP8_rI9%5i_nJ+xRw6@X">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE4">
+                      <block type="text_char" id="|(Qz73RixKqn(fWOXA8,">
+                        <field name="TEXT">E</field>
+                      </block>
+                    </value>
+                    <statement name="DO4">
+                      <block type="otto_move" id="KK)_$(_pj|M}12=,M]{g">
+                        <field name="otto_move_sens">BENDLEFT</field>
+                        <field name="otto_move_speed">1000</field>
+                        <next>
+                          <block type="otto_sound" id="mDF.n-N[M}U4Wz@gwv[,">
+                            <field name="otto_sound">S_happy_short</field>
+                            <next>
+                              <block type="base_delay" id="A7:(ud11_z[k@=*c,|6$">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="@N7n@M`i6%q*UbwGD(ND">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="QOoqoAun|@I=jU5rF7EH">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="1k2*q4_7D8{V0f{9W$%W">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE5">
+                      <block type="text_char" id="I:Z^Zn%qHS1c[0=N4_QW">
+                        <field name="TEXT">F</field>
+                      </block>
+                    </value>
+                    <statement name="DO5">
+                      <block type="otto_move" id="12UXQ`;DZ~.)4NJ]Y9bG">
+                        <field name="otto_move_sens">BENDRIGHT</field>
+                        <field name="otto_move_speed">1000</field>
+                        <next>
+                          <block type="otto_sound" id="ij[},B_~gH[M?|fV**%o">
+                            <field name="otto_sound">S_happy_short</field>
+                            <next>
+                              <block type="base_delay" id="(|ICE/qO]Ur$1|Rg;0n(">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="@QUQPZ/yFsy6mA+n!?A(">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="gvQ%rQv]Vmk;tXq2z|L`">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="_0T3V]a,1T8Ab5Pt{i(9">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE6">
+                      <block type="text_char" id="q%*iYE_ftSGE,uq.~_EU">
+                        <field name="TEXT">G</field>
+                      </block>
+                    </value>
+                    <statement name="DO6">
+                      <block type="otto_move" id="7(x6H,`M{:~9!A(jZNU=">
+                        <field name="otto_move_sens">SHAKELEFT</field>
+                        <field name="otto_move_speed">1000</field>
+                        <next>
+                          <block type="otto_sound" id="+,ECD!hrhBmS$mZFvZ6p">
+                            <field name="otto_sound">S_happy_short</field>
+                            <next>
+                              <block type="base_delay" id="W19aw5|;j7H#ZYz~k;,Z">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="YWY|%Q74)?wBZ0lDXNgR">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="Q=uyYYuO@ji|1Ny;hgwH">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id=".kPNgf5S|)B_#+fw,jK~">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE7">
+                      <block type="text_char" id="7?1K(=:85Gw.Z[ox|b2^">
+                        <field name="TEXT">H</field>
+                      </block>
+                    </value>
+                    <statement name="DO7">
+                      <block type="otto_move" id="=G[uX,d!)zSHo#,QviO;">
+                        <field name="otto_move_sens">SHAKERIGHT</field>
+                        <field name="otto_move_speed">1000</field>
+                        <next>
+                          <block type="otto_sound" id="k.^-OU[Z)_qnms#u9/-6">
+                            <field name="otto_sound">S_happy_short</field>
+                            <next>
+                              <block type="base_delay" id="h^*/9/HX?bDrE4rs(_V7">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="g[|$sJLiMw/bSj#lcqIy">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="99qpG1i:)T$XTx}G(=b,">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="e!#EQ6mk}r-syHrRhwYE">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE8">
+                      <block type="text_char" id="nz1dVl_!42U!-t7cPR=s">
+                        <field name="TEXT">I</field>
+                      </block>
+                    </value>
+                    <statement name="DO8">
+                      <block type="otto_move" id="SPSYFI~mbxflOzQ$N+(r">
+                        <field name="otto_move_sens">jump</field>
+                        <field name="otto_move_speed">1000</field>
+                        <next>
+                          <block type="otto_sound" id="@?p@@9s}aA1]/$L|mMTM">
+                            <field name="otto_sound">S_confused</field>
+                            <next>
+                              <block type="base_delay" id="U2PR4XtPWw+fSvKpSDj+">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="}Vg0Pqa+ISJ07{[C[x$k">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="]:YmqFtPJ!/@5`vHpi?H">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="Ejd2U(]}Uk`cttclk2Ku">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE9">
+                      <block type="text_char" id="uy/:7cyOgW{7c*cp55u$">
+                        <field name="TEXT">J</field>
+                      </block>
+                    </value>
+                    <statement name="DO9">
+                      <block type="otto_arms" id="3itn~NVk5B?ly%Cp//-B">
+                        <field name="otto_arms_choice">HANDSUP</field>
+                        <next>
+                          <block type="otto_sound" id="dR8zpXDFMG%[B*Tr,fi7">
+                            <field name="otto_sound">S_mode1</field>
+                            <next>
+                              <block type="base_delay" id="((nV8Cz+-C,P8Z+`~U_y">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="qkMEq=*#=K{V_VW,$R5Z">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="~v.M)T4lOqp1ODw:MtUM">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="tFBWA.1LlpT9!NO4!Ce7">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE10">
+                      <block type="text_char" id="3K)~]9K_wfah!O9g8yzh">
+                        <field name="TEXT">K</field>
+                      </block>
+                    </value>
+                    <statement name="DO10">
+                      <block type="otto_arms" id="~QIsgauQeRxiq?ppTB[_">
+                        <field name="otto_arms_choice">HANDSDOWN</field>
+                        <next>
+                          <block type="otto_sound" id=")Ocf)EzDcm*ykSycEHzB">
+                            <field name="otto_sound">S_mode2</field>
+                            <next>
+                              <block type="base_delay" id="3m^AB;SqaLJTLn]-n#Dw">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="w?%$$(r)6$oZI8EWv7MI">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="0bpd/d92xv5RV9XZ8xFn">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="=##U=YN$uX-ixTqcl(nn">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE11">
+                      <block type="text_char" id="C2M!;^W4_xSl0Om*m*}/">
+                        <field name="TEXT">L</field>
+                      </block>
+                    </value>
+                    <statement name="DO11">
+                      <block type="otto_arms" id="E8g$V:r1m:vmJ-3.?eK_">
+                        <field name="otto_arms_choice">HANDWAVE1</field>
+                        <next>
+                          <block type="otto_sound" id="ZVWs)mnQ!EXd=NnI{jj`">
+                            <field name="otto_sound">S_mode3</field>
+                            <next>
+                              <block type="base_delay" id="E6)2`:cTWc/2{tc`*Cxk">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="[R1H*21gMGn(e8`~;@_?">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="./]8j)8V$2lFj$C0rG4L">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="jj_CeV#sR0^[Nn+QZL+m">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE12">
+                      <block type="text_char" id="d~JVET2%9y3c,^k_jq4=">
+                        <field name="TEXT">M</field>
+                      </block>
+                    </value>
+                    <statement name="DO12">
+                      <block type="otto_arms" id="XfB8xP_TAoY.E{9IflMo">
+                        <field name="otto_arms_choice">HANDWAVE2</field>
+                        <next>
+                          <block type="otto_sound" id="8^t,t{o8}4r{R=v;=g)|">
+                            <field name="otto_sound">S_fart1</field>
+                            <next>
+                              <block type="base_delay" id="d38wg03M0GP+fvU6,STS">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id=",NpjVh]^KFnUU8j2.ES=">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="x%(4zx}/:`XWIPaecQ3c">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="rsqKFtQIX:?d(IHrhV83">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE13">
+                      <block type="text_char" id="=~;Yyn%|3:S(OGqQb9bo">
+                        <field name="TEXT">N</field>
+                      </block>
+                    </value>
+                    <statement name="DO13">
+                      <block type="otto_dance" id="0m:hW|*r]y2MQIM{((Rt">
+                        <field name="otto_dance_movement">moonwalkerLEFT</field>
+                        <field name="otto_move_speed">1000</field>
+                        <field name="otto_dance_size">25</field>
+                        <next>
+                          <block type="otto_sound" id="B]dn(H:KzLSI*XH,#Tg%">
+                            <field name="otto_sound">S_fart2</field>
+                            <next>
+                              <block type="base_delay" id="1_h]kc6R;NO$$Kc#nyuj">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="2i-6ZI@SE2}?omO^U*NH">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="+78Zz0oyDq6yI~%F{!a@">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="DgGsWnkb!;iG?qw$fcYj">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE14">
+                      <block type="text_char" id="G/Dtpl_Z~SS-Ef:)fl$e">
+                        <field name="TEXT">O</field>
+                      </block>
+                    </value>
+                    <statement name="DO14">
+                      <block type="otto_dance" id="?t}I(RHLRiiWcV:dpt(l">
+                        <field name="otto_dance_movement">moonwalkerRIGHT</field>
+                        <field name="otto_move_speed">1000</field>
+                        <field name="otto_dance_size">25</field>
+                        <next>
+                          <block type="otto_sound" id="r2j+trHlM)(0JF(sl_sM">
+                            <field name="otto_sound">S_fart3</field>
+                            <next>
+                              <block type="base_delay" id="2*9jJtv^P.y[PVf*=sp,">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="VX})2[_nw:DLaz^uEGd6">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="iIjHS]ZZ5C4@-uC)!BAn">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="bzrwvoxc5(n,%o+Ktj#Z">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE15">
+                      <block type="text_char" id="_r+dfYtyNbHn)j(-|[OQ">
+                        <field name="TEXT">P</field>
+                      </block>
+                    </value>
+                    <statement name="DO15">
+                      <block type="otto_dance" id="oF(0xwyQ8ly@uV{6U5]a">
+                        <field name="otto_dance_movement">crusaitoLEFT</field>
+                        <field name="otto_move_speed">1000</field>
+                        <field name="otto_dance_size">25</field>
+                        <next>
+                          <block type="otto_sound" id="sI~*;B_d5y15,lv-8B?}">
+                            <field name="otto_sound">S_OhOoh2</field>
+                            <next>
+                              <block type="base_delay" id="fQ@1c)n(wwq;tfsr3v^3">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="}eL2c,vyY]V~$bEJ.:6R">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="~h6{WW/4!6xh}Pq_?Gn4">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="j@[(~HWFc(OTw5uj`FZr">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE16">
+                      <block type="text_char" id="b.B_*Jk,TuW5Ltz2)i*1">
+                        <field name="TEXT">Q</field>
+                      </block>
+                    </value>
+                    <statement name="DO16">
+                      <block type="otto_dance" id="=m(.E=^0(A8x:-D~6bl(">
+                        <field name="otto_dance_movement">crusaitoRIGHT</field>
+                        <field name="otto_move_speed">1000</field>
+                        <field name="otto_dance_size">25</field>
+                        <next>
+                          <block type="otto_sound" id="}K7/Ec0Xg9WXl/a3mtN4">
+                            <field name="otto_sound">S_surprise</field>
+                            <next>
+                              <block type="base_delay" id="[16UWFpg,!!}Md,w-OF6">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="[@@@|^z~!~Dhl(8Oq56i">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="0DnQe;o$xPf$Y(bvl@~c">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="Nyxt5QG9757+9?/5h:Dv">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE17">
+                      <block type="text_char" id="`36N;jx(c5X/#uI8|/%M">
+                        <field name="TEXT">R</field>
+                      </block>
+                    </value>
+                    <statement name="DO17">
+                      <block type="otto_dance" id="=#|:|f1]_,RRP*,NU-LD">
+                        <field name="otto_dance_movement">flappingFRONT</field>
+                        <field name="otto_move_speed">1000</field>
+                        <field name="otto_dance_size">25</field>
+                        <next>
+                          <block type="otto_sound" id="FzAhFou:y]ZGc#EB[DNL">
+                            <field name="otto_sound">S_cuddly</field>
+                            <next>
+                              <block type="base_delay" id=".~p1Q}*EK20+gedK~gXR">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="2I)E[fFBAcw!q6/e2Y+M">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="`g.d7u@p2OX6obtU/I$N">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="94Q~wzb(|`3^Fh]?l5Ez">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE18">
+                      <block type="text_char" id="RSI.bbr6VukNinl!Ya3g">
+                        <field name="TEXT">S</field>
+                      </block>
+                    </value>
+                    <statement name="DO18">
+                      <block type="otto_dance" id="o=Cb0t8aCx5FV6U?dl4t">
+                        <field name="otto_dance_movement">flappingBACK</field>
+                        <field name="otto_move_speed">1000</field>
+                        <field name="otto_dance_size">25</field>
+                        <next>
+                          <block type="otto_sound" id=",X).OdGn_VVarr|/0*W@">
+                            <field name="otto_sound">S_OhOoh2</field>
+                            <next>
+                              <block type="base_delay" id="rC|=`R^LTzCi1rZ.vL/)">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="gLO]E:,*WUevTy=jseu,">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id=";a1#V-0`]6-a6DbZ_~8;">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="d#0Yu.C#S^G@;Cu~1oA-">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE19">
+                      <block type="text_char" id="H^%0V9A9vGQ*3v]Nu=)O">
+                        <field name="TEXT">T</field>
+                      </block>
+                    </value>
+                    <statement name="DO19">
+                      <block type="otto_do" id="b2R#}Y7}vV`yyC#0R~;g">
+                        <field name="otto_do_movement">swing</field>
+                        <field name="otto_move_speed">1000</field>
+                        <field name="otto_dance_size">25</field>
+                        <next>
+                          <block type="otto_sound" id="MiSc[P8LN9C/a1+j`gfG">
+                            <field name="otto_sound">S_happy</field>
+                            <next>
+                              <block type="base_delay" id=",T(Wj50PS4$ND8-;;|5`">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="/+mo?L]Ul6lADMzQZk^@">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="WOJ|bwj_5xG]U#k2owk)">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="2@GufODKj84@M:rDD)3[">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE20">
+                      <block type="text_char" id="=/V=SC)Wxvs9UX}y#DJ}">
+                        <field name="TEXT">U</field>
+                      </block>
+                    </value>
+                    <statement name="DO20">
+                      <block type="otto_do" id="DhN@m_Z2,*S|3M$O2s6/">
+                        <field name="otto_do_movement">updown</field>
+                        <field name="otto_move_speed">1000</field>
+                        <field name="otto_dance_size">25</field>
+                        <next>
+                          <block type="otto_sound" id="Y-#2`QEzzB$e+72+kCN9">
+                            <field name="otto_sound">S_happy_short</field>
+                            <next>
+                              <block type="base_delay" id="P7uT^00cZ}`{BrWx8]PE">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="Kj5l~Z_lJhe$]X-$3Y6y">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="`@%!`*VhD[${6V7,!.t?">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="|Na2fwNS7b2QN_R`zNqQ">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE21">
+                      <block type="text_char" id=";kUNSXr+bMc%%4H7,mV6">
+                        <field name="TEXT">V</field>
+                      </block>
+                    </value>
+                    <statement name="DO21">
+                      <block type="otto_do" id="H+vBXFD8`?4^8}j7!~Gw">
+                        <field name="otto_do_movement">tiptoeSwing</field>
+                        <field name="otto_move_speed">1000</field>
+                        <field name="otto_dance_size">25</field>
+                        <next>
+                          <block type="otto_sound" id="~x5XL`yNPyAw%%2KF^o2">
+                            <field name="otto_sound">S_OhOoh</field>
+                            <next>
+                              <block type="base_delay" id="QA4%iUBm7n$SH~A{bXT:">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="`y(IpG_Eacs[]4N9coRq">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="9B*S#j:3{wM81b3dgvi!">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="!lGQ*K4lPskCzoNzhB_0">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE22">
+                      <block type="text_char" id="*%v(]tIe}{VO,5Wv58N0">
+                        <field name="TEXT">W</field>
+                      </block>
+                    </value>
+                    <statement name="DO22">
+                      <block type="otto_do" id="Yi/$|gb)G[e8y`4Ip]Lq">
+                        <field name="otto_do_movement">jitter</field>
+                        <field name="otto_move_speed">1000</field>
+                        <field name="otto_dance_size">25</field>
+                        <next>
+                          <block type="otto_sound" id="L0kP=MVdFaHhOU|jkc%$">
+                            <field name="otto_sound">S_sad</field>
+                            <next>
+                              <block type="base_delay" id="j%Q92hX~5:Jmx3Y2eC*o">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="~%-`_*)Ry`?[sv7i8EZ8">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="[UUuHbpkkI-?9-#W;$jH">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="t*-r89C3yd^zDTb74pfN">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE23">
+                      <block type="text_char" id="iL5CNI=IiIWhWi4aqTCX">
+                        <field name="TEXT">X</field>
+                      </block>
+                    </value>
+                    <statement name="DO23">
+                      <block type="otto_do" id="z{I_oMr?Vnai5]V!+G0j">
+                        <field name="otto_do_movement">ascendingTurn</field>
+                        <field name="otto_move_speed">1000</field>
+                        <field name="otto_dance_size">25</field>
+                        <next>
+                          <block type="otto_sound" id="0U:9@i*O6^[Ik${ZCmAn">
+                            <field name="otto_sound">S_confused</field>
+                            <next>
+                              <block type="base_delay" id="J|;8`+3|oj(/_C5P;x%x">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="?i(Jl%%fEihBu=8uIB`J">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="7qd{_RqKalw^j#kEFhqm">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="fTVl3RMij7njD(R;8D~2">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE24">
+                      <block type="text_char" id="~0#w``l.soehkfHH``5w">
+                        <field name="TEXT">Y</field>
+                      </block>
+                    </value>
+                    <statement name="DO24">
+                      <block type="otto_gesture" id="*E*-7@n$2STJxN]y5-]6">
+                        <field name="otto_gesture">OttoSuperHappy</field>
+                        <next>
+                          <block type="base_delay" id="oFS3g1fCHJgH5zryP#*z">
+                            <field name="unite">m</field>
+                            <value name="DELAY_TIME">
+                              <shadow type="math_number" id="rW;cpSE$B};/?cG*@a~7">
+                                <field name="NUM">100</field>
+                              </shadow>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="eIEQojuuAA?JBzh0-Z`W">
+                                <field name="VAR">command</field>
+                                <value name="VALUE">
+                                  <block type="text_char" id="@HMogT,ex6tZTHFa|Sa!">
+                                    <field name="TEXT">0</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE25">
+                      <block type="text_char" id="b/LbvYkuOP(WA%GYzMEg">
+                        <field name="TEXT">Z</field>
+                      </block>
+                    </value>
+                    <statement name="DO25">
+                      <block type="otto_gesture" id="9.h;Pym`$B+-waJ:+Yxf">
+                        <field name="otto_gesture">OttoHappy</field>
+                        <next>
+                          <block type="base_delay" id=";]+`NG$kmbJ2)+Wuvt7-">
+                            <field name="unite">m</field>
+                            <value name="DELAY_TIME">
+                              <shadow type="math_number" id="QrrZ/N0ARfN!,3r35Dw3">
+                                <field name="NUM">100</field>
+                              </shadow>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="=-a.whqg2CI{yBV;9D]v">
+                                <field name="VAR">command</field>
+                                <value name="VALUE">
+                                  <block type="text_char" id="p.nTKm7^^:UFYR|6c=eJ">
+                                    <field name="TEXT">0</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE26">
+                      <block type="text_char" id="zFh!{6MyFVx4K%,?%xYq">
+                        <field name="TEXT">a</field>
+                      </block>
+                    </value>
+                    <statement name="DO26">
+                      <block type="otto_gesture" id="X5@T.-t$xK^+jkGqo1Wd">
+                        <field name="otto_gesture">OttoSad</field>
+                        <next>
+                          <block type="base_delay" id="uvZ*lnnW-8Mg7HI74tQn">
+                            <field name="unite">m</field>
+                            <value name="DELAY_TIME">
+                              <shadow type="math_number" id="3KHiU*Yt+s38P@FAqp:1">
+                                <field name="NUM">100</field>
+                              </shadow>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="Bbf_huv)~^P6lD_By3br">
+                                <field name="VAR">command</field>
+                                <value name="VALUE">
+                                  <block type="text_char" id="!6.3=T^i+.%[Qc8]95nb">
+                                    <field name="TEXT">0</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE27">
+                      <block type="text_char" id="9B3ja?]4vF{!i6K~#5?U">
+                        <field name="TEXT">b</field>
+                      </block>
+                    </value>
+                    <statement name="DO27">
+                      <block type="otto_gesture" id="J.@#hrBvs[azqJxM)p~S">
+                        <field name="otto_gesture">OttoSleeping</field>
+                        <next>
+                          <block type="base_delay" id="/l*EGjOPWKA;4dYj#NVX">
+                            <field name="unite">m</field>
+                            <value name="DELAY_TIME">
+                              <shadow type="math_number" id="kwt~Y|NL0U(#cW{z`RS0">
+                                <field name="NUM">100</field>
+                              </shadow>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="Vx!yl:-/bp#jxFl!c//k">
+                                <field name="VAR">command</field>
+                                <value name="VALUE">
+                                  <block type="text_char" id="GeNZ2V`R#Wk00;XP?!s{">
+                                    <field name="TEXT">0</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE28">
+                      <block type="text_char" id="m0GGCl.sUo4Ek?bO3)U|">
+                        <field name="TEXT">c</field>
+                      </block>
+                    </value>
+                    <statement name="DO28">
+                      <block type="otto_gesture" id="qvt.(v_ANc[4rOI1]#g{">
+                        <field name="otto_gesture">OttoConfused</field>
+                        <next>
+                          <block type="base_delay" id="MkwuQuThA,57;wHtB3to">
+                            <field name="unite">m</field>
+                            <value name="DELAY_TIME">
+                              <shadow type="math_number" id=")Wl!6DUKFRc!IB#4.B50">
+                                <field name="NUM">100</field>
+                              </shadow>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="EhP:is:T+,pNZ*(4FfQ,">
+                                <field name="VAR">command</field>
+                                <value name="VALUE">
+                                  <block type="text_char" id="KHtsNFoUI=_cK-:O:txf">
+                                    <field name="TEXT">0</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE29">
+                      <block type="text_char" id="stw{+[gDU/Id3$^4eXia">
+                        <field name="TEXT">d</field>
+                      </block>
+                    </value>
+                    <statement name="DO29">
+                      <block type="otto_gesture" id="Unf@TYjiL$u~c{U@gxp{">
+                        <field name="otto_gesture">OttoFretful</field>
+                        <next>
+                          <block type="base_delay" id="ld#Eq/D.CY%D=uvyB+GQ">
+                            <field name="unite">m</field>
+                            <value name="DELAY_TIME">
+                              <shadow type="math_number" id="1X3_qqe`/+U6m31~U)9]">
+                                <field name="NUM">100</field>
+                              </shadow>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="e6QXnh71NaOYH^fv?$PG">
+                                <field name="VAR">command</field>
+                                <value name="VALUE">
+                                  <block type="text_char" id="z({Q=9Me|:E0U+arIK~_">
+                                    <field name="TEXT">0</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE30">
+                      <block type="text_char" id="xlBRtW=:]:j]S-0[@,kr">
+                        <field name="TEXT">e</field>
+                      </block>
+                    </value>
+                    <statement name="DO30">
+                      <block type="otto_gesture" id="ceO/u3zvXTQ0qQwp|6+~">
+                        <field name="otto_gesture">OttoLove</field>
+                        <next>
+                          <block type="base_delay" id="(.Xs13B$U-SirrqPd?wn">
+                            <field name="unite">m</field>
+                            <value name="DELAY_TIME">
+                              <shadow type="math_number" id="`]LJ_9],,6|Z;TI1[6K,">
+                                <field name="NUM">100</field>
+                              </shadow>
+                            </value>
+                            <next>
+                              <block type="variables_set" id=";a~873y-s]y}uB(z(]L:">
+                                <field name="VAR">command</field>
+                                <value name="VALUE">
+                                  <block type="text_char" id="S_d|u@g4BCLNS[ipx_4m">
+                                    <field name="TEXT">0</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE31">
+                      <block type="text_char" id="]OgPCryXQCnr;;cWM9Fh">
+                        <field name="TEXT">f</field>
+                      </block>
+                    </value>
+                    <statement name="DO31">
+                      <block type="otto_gesture" id="Mc$Cv-T,bl-9m$}fcX:d">
+                        <field name="otto_gesture">OttoAngry</field>
+                        <next>
+                          <block type="base_delay" id="I2:}h$j-+Vfv@|P#Y#4x">
+                            <field name="unite">m</field>
+                            <value name="DELAY_TIME">
+                              <shadow type="math_number" id="tNiX50oE=XPvaA5:i)m2">
+                                <field name="NUM">100</field>
+                              </shadow>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="mdPTzk}`}d:]/*m5E[@f">
+                                <field name="VAR">command</field>
+                                <value name="VALUE">
+                                  <block type="text_char" id="r~)XB]p0pb:JKci+mgPy">
+                                    <field name="TEXT">0</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE32">
+                      <block type="text_char" id="}4fgYu(9D^-BW{,N!F6U">
+                        <field name="TEXT">g</field>
+                      </block>
+                    </value>
+                    <statement name="DO32">
+                      <block type="otto_gesture" id=".Sp|#4Exa|.#BNk;iiN-">
+                        <field name="otto_gesture">OttoMagic</field>
+                        <next>
+                          <block type="base_delay" id="L)./@k^47%D-N+i5Q3U`">
+                            <field name="unite">m</field>
+                            <value name="DELAY_TIME">
+                              <shadow type="math_number" id="dz{H$vzZT3]g,JQqPvH~">
+                                <field name="NUM">100</field>
+                              </shadow>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="GCFW1.E$w1=JbQ28/_Bd">
+                                <field name="VAR">command</field>
+                                <value name="VALUE">
+                                  <block type="text_char" id="TsF)|L}9VJ$qYJ[3?[VB">
+                                    <field name="TEXT">0</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE33">
+                      <block type="text_char" id="|^bM4*mkoUxuJy%dnw=R">
+                        <field name="TEXT">h</field>
+                      </block>
+                    </value>
+                    <statement name="DO33">
+                      <block type="otto_gesture" id="w8.ylCyaExSG*)YLTQhe">
+                        <field name="otto_gesture">OttoWave</field>
+                        <next>
+                          <block type="base_delay" id="?)+Hq93pA=!YYL)Z;TUq">
+                            <field name="unite">m</field>
+                            <value name="DELAY_TIME">
+                              <shadow type="math_number" id="|[Ip3}=W;YH;FWxJRe##">
+                                <field name="NUM">100</field>
+                              </shadow>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="u[3,Zdl~kGWdE%A4E7yN">
+                                <field name="VAR">command</field>
+                                <value name="VALUE">
+                                  <block type="text_char" id="rk@`uGsz;5lBh[s]a#Ss">
+                                    <field name="TEXT">0</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE34">
+                      <block type="text_char" id="P+47M08|Uq?5Lxp]=W)k">
+                        <field name="TEXT">i</field>
+                      </block>
+                    </value>
+                    <statement name="DO34">
+                      <block type="otto_gesture" id="v{m%kV9o#W)yC[PD#k0:">
+                        <field name="otto_gesture">OttoVictory</field>
+                        <next>
+                          <block type="base_delay" id="gvFrctih;vPN*9#hiu#f">
+                            <field name="unite">m</field>
+                            <value name="DELAY_TIME">
+                              <shadow type="math_number" id="hsIs[T6*beENEo):O(~G">
+                                <field name="NUM">100</field>
+                              </shadow>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="1v(+Wf}**!Q.~wco~0,2">
+                                <field name="VAR">command</field>
+                                <value name="VALUE">
+                                  <block type="text_char" id="L2A3uNfuu6$|YBg{mMWp">
+                                    <field name="TEXT">0</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE35">
+                      <block type="text_char" id="i)~?X;[@I;IMgh||iVnh">
+                        <field name="TEXT">j</field>
+                      </block>
+                    </value>
+                    <statement name="DO35">
+                      <block type="otto_gesture" id="h616x|-AP-Qe3Wk0ilEB">
+                        <field name="otto_gesture">OttoFail</field>
+                        <next>
+                          <block type="base_delay" id="C01O#$@MbW^sg0+|/j#L">
+                            <field name="unite">m</field>
+                            <value name="DELAY_TIME">
+                              <shadow type="math_number" id="zw[`?x3O70i07,;V#!Ys">
+                                <field name="NUM">100</field>
+                              </shadow>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="ub@ccCpsgl`*g{uos~Ur">
+                                <field name="VAR">command</field>
+                                <value name="VALUE">
+                                  <block type="text_char" id="97=E4`iT73|Hg3_QWT}Z">
+                                    <field name="TEXT">0</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE36">
+                      <block type="text_char" id="2O3k,7}U6Ji%t8`2q`Y8">
+                        <field name="TEXT">k</field>
+                      </block>
+                    </value>
+                    <statement name="DO36">
+                      <block type="otto_gesture" id="$kZW8}8~+A5v7_MV~cMt">
+                        <field name="otto_gesture">OttoFart</field>
+                        <next>
+                          <block type="base_delay" id="X%cu0~Fq{C14=^7(YlX1">
+                            <field name="unite">m</field>
+                            <value name="DELAY_TIME">
+                              <shadow type="math_number" id="i:coz*:fBJrHxj=`ewEn">
+                                <field name="NUM">100</field>
+                              </shadow>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="=#Ko*@^ca1FgKznl96-V">
+                                <field name="VAR">command</field>
+                                <value name="VALUE">
+                                  <block type="text_char" id="p}Y{%9GeC-@#GO|]jhe]">
+                                    <field name="TEXT">0</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE37">
+                      <block type="text_char" id="cUA,sHqvXJ)B9o+(C-r$">
+                        <field name="TEXT">l</field>
+                      </block>
+                    </value>
+                    <statement name="DO37">
+                      <block type="mouth_face" id="e:vVZV~2NY*D;uUtX+w2">
+                        <field name="otto9_mouth_choice">happyOpen</field>
+                        <next>
+                          <block type="otto_sound" id=".Y~b/+NXLad|KGi#PQiP">
+                            <field name="otto_sound">S_superHappy</field>
+                            <next>
+                              <block type="base_delay" id="ljokYKchccg%EMIAI.Tz">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="y|mR{$,O$tUE*@weU]J]">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="u8mh;18k0#IP#;+Tx}H_">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="vLFd-5:4,s@-Jt9oiGCU">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE38">
+                      <block type="text_char" id="KsupQ#5=S^Oqzv.ssY]e">
+                        <field name="TEXT">m</field>
+                      </block>
+                    </value>
+                    <statement name="DO38">
+                      <block type="mouth_face" id="l[N6Xm;%=5w:n?]{zA%%">
+                        <field name="otto9_mouth_choice">happyClosed</field>
+                        <next>
+                          <block type="otto_sound" id="V[tsda=ZHaGs#v508L%r">
+                            <field name="otto_sound">S_happy</field>
+                            <next>
+                              <block type="base_delay" id="w@5(G?!5h3$j4S1UosiX">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="rrcc*{W73AGN`nsY:YT:">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="4spy(.Azl@23O5WAlr1K">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="DryYdJAyLef$D8bji[}k">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE39">
+                      <block type="text_char" id="jx^@b]W.l+s?uquUqdA4">
+                        <field name="TEXT">n</field>
+                      </block>
+                    </value>
+                    <statement name="DO39">
+                      <block type="mouth_face" id="UnJL1x8{VdxyR9a]iN=c">
+                        <field name="otto9_mouth_choice">smile</field>
+                        <next>
+                          <block type="otto_sound" id="%C#rQ{wOu$n);~6sjKRz">
+                            <field name="otto_sound">S_happy_short</field>
+                            <next>
+                              <block type="base_delay" id="7effZjTiv|qhubAyUe#v">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="p6@!/j_Tn-FcO-UolfpQ">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="~1.3HQNg:DHj;v6GO%TE">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="x|uGvxu0zp;a{|;8;hPk">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE40">
+                      <block type="text_char" id="`r{hCR+f,3u%1[[4iF_T">
+                        <field name="TEXT">o</field>
+                      </block>
+                    </value>
+                    <statement name="DO40">
+                      <block type="mouth_face" id="X(]orR[DG{:Tj%Gc^T?)">
+                        <field name="otto9_mouth_choice">23</field>
+                        <next>
+                          <block type="otto_sound" id="4)%q4,hWqCCZVN+=FCHB">
+                            <field name="otto_sound">S_sad</field>
+                            <next>
+                              <block type="base_delay" id="1NQ4LxydR+h$gqJsOAz(">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="v2},k|H@+2%DPpoUP5Nu">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="ALceMMdZhE0N~og@7_Ca">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="E01nAc5_e)9xs41/t3CP">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE41">
+                      <block type="text_char" id="P-asc*2($Rnusxq}o)0D">
+                        <field name="TEXT">p</field>
+                      </block>
+                    </value>
+                    <statement name="DO41">
+                      <block type="mouth_face" id="5$Uv=1F-sD?MSw@*oLMf">
+                        <field name="otto9_mouth_choice">24</field>
+                        <next>
+                          <block type="otto_sound" id="4jBog%y4Xj=xR7ve+:_K">
+                            <field name="otto_sound">S_sad</field>
+                            <next>
+                              <block type="base_delay" id=".^/3Zl=`9YT/5S?deg+7">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="@[|Ku5P6_r4].y1J)%~|">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="D_m+04df6p@=K*AR2={g">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="tEV=|c7_hKH^nn5QZkh0">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE42">
+                      <block type="text_char" id="TR/]y@BxXw}KP(96yGGa">
+                        <field name="TEXT">q</field>
+                      </block>
+                    </value>
+                    <statement name="DO42">
+                      <block type="mouth_face" id="_vYcYMg=l^_EBRcuZj-q">
+                        <field name="otto9_mouth_choice">smallSurprise</field>
+                        <next>
+                          <block type="otto_sound" id="o?VGd)Sb!bZ#m=z#!s%|">
+                            <field name="otto_sound">S_surprise</field>
+                            <next>
+                              <block type="base_delay" id="[XNQY.UsFW4:DUL)tbs$">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="Ja1eWaL]PJt.u[$mm@l%">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="hC/N)R6p)(i7YWe#2c=+">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="v0pTu,b?jTXP%Ffv+yKe">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE43">
+                      <block type="text_char" id="fE5(aX//vX)qf=Ex^?ns">
+                        <field name="TEXT">r</field>
+                      </block>
+                    </value>
+                    <statement name="DO43">
+                      <block type="mouth_face" id="9Cb81c?V%7[!ri{v3wP`">
+                        <field name="otto9_mouth_choice">bigSurprise</field>
+                        <next>
+                          <block type="otto_sound" id="AmgA#[uoVC|d:P7E,)sh">
+                            <field name="otto_sound">S_surprise</field>
+                            <next>
+                              <block type="base_delay" id="{`#t;Az/5-N,|34?-^I/">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="6A}6YVAZutv[Bk392ndT">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="TKFV0xP[u!PO{liCPCeQ">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="o/4J#eg2%:.-)*j1hQ`G">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE44">
+                      <block type="text_char" id="5|%N4:|%cvO?AB0!rTAj">
+                        <field name="TEXT">s</field>
+                      </block>
+                    </value>
+                    <statement name="DO44">
+                      <block type="mouth_face" id="+y~_:tqNn=Dhpl+:XNEI">
+                        <field name="otto9_mouth_choice">confused</field>
+                        <next>
+                          <block type="otto_sound" id="[~ua+2}mr%HjhA.A+.fQ">
+                            <field name="otto_sound">S_confused</field>
+                            <next>
+                              <block type="base_delay" id="446m3]gkzDeC.TEkxC+)">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="Dwr4HJ4+e[*:_s}Yn6VN">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="8Xk,NGV;p$f{CMGI4${A">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="oRVuGn;8fstwd,/0e3}s">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE45">
+                      <block type="text_char" id="9102TOWxzn9wfX1.AUfV">
+                        <field name="TEXT">t</field>
+                      </block>
+                    </value>
+                    <statement name="DO45">
+                      <block type="mouth_face" id=":KZBcNU[.~[49j%=n5WY">
+                        <field name="otto9_mouth_choice">tongueOut</field>
+                        <next>
+                          <block type="otto_sound" id="S)M]I=9B@Iz(Ep]WwQ/%">
+                            <field name="otto_sound">S_buttonPushed</field>
+                            <next>
+                              <block type="base_delay" id="+ORL8*8k8[psENI5yxvc">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="sS=!uM%W~r3E8tT!o5]G">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="(UFJ^nyqvB3C,+ZT!jgE">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="uUCi`--p8!e,GY~SX6wU">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE46">
+                      <block type="text_char" id="0i5S7/)R1_1i_yU{V1OA">
+                        <field name="TEXT">u</field>
+                      </block>
+                    </value>
+                    <statement name="DO46">
+                      <block type="mouth_face" id="nR1rl*:aRx7:EU1d[?We">
+                        <field name="otto9_mouth_choice">culito</field>
+                        <next>
+                          <block type="otto_sound" id="}+_TQ7iboz8Uyr/29+TU">
+                            <field name="otto_sound">S_OhOoh</field>
+                            <next>
+                              <block type="base_delay" id="Vz/$CHoq*9dWP@*{dP*)">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="*_g$aRfIEXZ-LL=8nX+p">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="+7|^Jk}{yZ:iqoeoD:yM">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="#%:TW]xobX)k4fL|pgT3">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE47">
+                      <block type="text_char" id=".pBW$8c^vp!--!a*S@$0">
+                        <field name="TEXT">v</field>
+                      </block>
+                    </value>
+                    <statement name="DO47">
+                      <block type="mouth_face" id="Ws|Uze@f)76OQ0ET%_:L">
+                        <field name="otto9_mouth_choice">lineMouth</field>
+                        <next>
+                          <block type="otto_sound" id="D|:b}{75uu?8[Bkl$1C7">
+                            <field name="otto_sound">S_disconnection</field>
+                            <next>
+                              <block type="base_delay" id="xS*xahEs}x@gAO{*D$Sq">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="!*0l]x`Jb?Wo$3{4Vu3H">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="z8XG!fnw,Z.76mwcBWg+">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="42DVDCLP,(ljV@NJ},ck">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE48">
+                      <block type="text_char" id="lzl#SYf)F8x,~u371#${">
+                        <field name="TEXT">w</field>
+                      </block>
+                    </value>
+                    <statement name="DO48">
+                      <block type="mouth_face" id="t(1u?[BxW@-YcVX}DO}C">
+                        <field name="otto9_mouth_choice">xMouth</field>
+                        <next>
+                          <block type="otto_sound" id="Uhyy##LhD?7({R9%@_$%">
+                            <field name="otto_sound">S_surprise</field>
+                            <next>
+                              <block type="base_delay" id="r0Qhb4}|#5TZ?n/4N%Tv">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="y,3K8HJ4M=mZ@T)h6.M3">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="YfSo]=~m$HVbc{7;56T%">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="]]Fr~_bk3zP}s~[~OT_5">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE49">
+                      <block type="text_char" id="J(fE!=K5-{sL}HfXF@y*">
+                        <field name="TEXT">x</field>
+                      </block>
+                    </value>
+                    <statement name="DO49">
+                      <block type="mouth_face" id="GEbm_I%`DR`7)]q.v({i">
+                        <field name="otto9_mouth_choice">okMouth</field>
+                        <next>
+                          <block type="otto_sound" id=")1,=:hIQ:#qQ5JMZ~]~L">
+                            <field name="otto_sound">S_OhOoh</field>
+                            <next>
+                              <block type="base_delay" id="n?_9@_54EZnge;(g0-qF">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="Zv=LlM%}cxl}tD|+NL5k">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id=")rgG8CMh#CR-0Ba+Ot^e">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="XnOL7{l$5zmA`!`a|5jF">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE50">
+                      <block type="text_char" id="r=H*Y-eC6`mN.$1-Tmh;">
+                        <field name="TEXT">y</field>
+                      </block>
+                    </value>
+                    <statement name="DO50">
+                      <block type="mouth_face" id="/Vl~vGcqi_@ID{)o3Kv:">
+                        <field name="otto9_mouth_choice">heart</field>
+                        <next>
+                          <block type="otto_sound" id="FAz?a9ov^DhEhNki#}}M">
+                            <field name="otto_sound">S_cuddly</field>
+                            <next>
+                              <block type="base_delay" id="}l70X,RH;kctT#n2w?r-">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="LCu8gs~Zz|Pm,tN{?S8v">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="R7?O7G}s^!z]x-mW@NNB">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id=";GuH)$N3so3MXdN~P;-(">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE51">
+                      <block type="text_char" id="FlaCTioL0j5`oAujkZ5P">
+                        <field name="TEXT">z</field>
+                      </block>
+                    </value>
+                    <statement name="DO51">
+                      <block type="mouth_face" id="(1n4lJgLZvP@ia8cI]2Y">
+                        <field name="otto9_mouth_choice">27</field>
+                        <next>
+                          <block type="otto_sound" id="uWq,LTqES$LW8,h$+EyM">
+                            <field name="otto_sound">S_surprise</field>
+                            <next>
+                              <block type="base_delay" id="sV6=etr}63wc]OoL}.W9">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="l1j2{lu!T0)OxP^W5E)}">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="!zgZ%/#28j_NK+$|ZG(5">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="~X0Pq.^A[tK=,3g:nF58">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE52">
+                      <block type="text_char" id="?v24pXHcpKh?[bh+)o1L">
+                        <field name="TEXT">1</field>
+                      </block>
+                    </value>
+                    <statement name="DO52">
+                      <block type="mouth_matrix8x8" id="3C1h|4m+-poEI#bb`;-q">
+                        <field name="Pixel0">FALSE</field>
+                        <field name="Pixel8">FALSE</field>
+                        <field name="Pixel16">FALSE</field>
+                        <field name="Pixel24">FALSE</field>
+                        <field name="Pixel32">FALSE</field>
+                        <field name="Pixel40">FALSE</field>
+                        <field name="Pixel48">FALSE</field>
+                        <field name="Pixel56">FALSE</field>
+                        <field name="Pixel1">TRUE</field>
+                        <field name="Pixel9">FALSE</field>
+                        <field name="Pixel17">TRUE</field>
+                        <field name="Pixel25">FALSE</field>
+                        <field name="Pixel33">TRUE</field>
+                        <field name="Pixel41">TRUE</field>
+                        <field name="Pixel49">TRUE</field>
+                        <field name="Pixel57">FALSE</field>
+                        <field name="Pixel2">TRUE</field>
+                        <field name="Pixel10">FALSE</field>
+                        <field name="Pixel18">TRUE</field>
+                        <field name="Pixel26">FALSE</field>
+                        <field name="Pixel34">FALSE</field>
+                        <field name="Pixel42">TRUE</field>
+                        <field name="Pixel50">FALSE</field>
+                        <field name="Pixel58">FALSE</field>
+                        <field name="Pixel3">TRUE</field>
+                        <field name="Pixel11">TRUE</field>
+                        <field name="Pixel19">TRUE</field>
+                        <field name="Pixel27">FALSE</field>
+                        <field name="Pixel35">FALSE</field>
+                        <field name="Pixel43">TRUE</field>
+                        <field name="Pixel51">FALSE</field>
+                        <field name="Pixel59">FALSE</field>
+                        <field name="Pixel4">TRUE</field>
+                        <field name="Pixel12">FALSE</field>
+                        <field name="Pixel20">TRUE</field>
+                        <field name="Pixel28">FALSE</field>
+                        <field name="Pixel36">FALSE</field>
+                        <field name="Pixel44">TRUE</field>
+                        <field name="Pixel52">FALSE</field>
+                        <field name="Pixel60">FALSE</field>
+                        <field name="Pixel5">TRUE</field>
+                        <field name="Pixel13">FALSE</field>
+                        <field name="Pixel21">TRUE</field>
+                        <field name="Pixel29">FALSE</field>
+                        <field name="Pixel37">TRUE</field>
+                        <field name="Pixel45">TRUE</field>
+                        <field name="Pixel53">TRUE</field>
+                        <field name="Pixel61">FALSE</field>
+                        <field name="Pixel6">FALSE</field>
+                        <field name="Pixel14">FALSE</field>
+                        <field name="Pixel22">FALSE</field>
+                        <field name="Pixel30">FALSE</field>
+                        <field name="Pixel38">FALSE</field>
+                        <field name="Pixel46">FALSE</field>
+                        <field name="Pixel54">FALSE</field>
+                        <field name="Pixel62">FALSE</field>
+                        <field name="Pixel7">FALSE</field>
+                        <field name="Pixel15">FALSE</field>
+                        <field name="Pixel23">FALSE</field>
+                        <field name="Pixel31">FALSE</field>
+                        <field name="Pixel39">FALSE</field>
+                        <field name="Pixel47">FALSE</field>
+                        <field name="Pixel55">FALSE</field>
+                        <field name="Pixel63">FALSE</field>
+                        <next>
+                          <block type="otto_sound" id="`R#L])Xo!tMjbX+})K6`">
+                            <field name="otto_sound">S_mode1</field>
+                            <next>
+                              <block type="base_delay" id="5]zztgPR%tw/1.7(?+d@">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="uZQy}u=vDicG0%Umz{aI">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="Jq:1kOVlw+LeONR8(cY(">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="|a`_}pzJx}16mq$1kg7o">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE53">
+                      <block type="text_char" id="}q`@QZ{%taTFf1Vxxok%">
+                        <field name="TEXT">2</field>
+                      </block>
+                    </value>
+                    <statement name="DO53">
+                      <block type="mouth_text" id="2$m.L0@;`W(%Cuba7kCl">
+                        <field name="input">I LOVE YOU</field>
+                        <next>
+                          <block type="otto_sound" id="2PYvpk,eWoJI]=^4(4ps">
+                            <field name="otto_sound">S_cuddly</field>
+                            <next>
+                              <block type="base_delay" id="IOzI:U!R:a]:2:c_{+is">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="RxB}BT2#?^h+,`P1?xS7">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="uQDKYGzGlHI%CaKQktd~">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="4yqY5BxyN_Gat?EmySSP">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE54">
+                      <block type="text_char" id="|75+q/olZ)=;oegp(ibA">
+                        <field name="TEXT">3</field>
+                      </block>
+                    </value>
+                    <statement name="DO54">
+                      <block type="RTTTL_music" id="3^eGB[y^OwY2vk;+V}E#">
+                        <field name="PIN_BUZZER">13</field>
+                        <field name="MELODY">WeWishYou</field>
+                        <next>
+                          <block type="base_delay" id="[-|g+JYdVA9nh1gT#K2)">
+                            <field name="unite">m</field>
+                            <value name="DELAY_TIME">
+                              <shadow type="math_number" id=":l9649OqqzQzX;eKi,ba">
+                                <field name="NUM">100</field>
+                              </shadow>
+                            </value>
+                            <next>
+                              <block type="variables_set" id="@?NqX:r]!C4YY:?=5$A_">
+                                <field name="VAR">command</field>
+                                <value name="VALUE">
+                                  <block type="text_char" id="aR[;ls?.7nsB6DV/Ky]B">
+                                    <field name="TEXT">0</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE55">
+                      <block type="text_char" id="~{K+RD-SstO(Ei3R^co$">
+                        <field name="TEXT">4</field>
+                      </block>
+                    </value>
+                    <statement name="DO55">
+                      <block type="RTTTL_music" id="HXB/sTaU/9Q=V/|hPRCA">
+                        <field name="PIN_BUZZER">13</field>
+                        <field name="MELODY">StarWars</field>
+                        <next>
+                          <block type="mouth_face" id="sfK2;D]!%PZ3I;NITqsd">
+                            <field name="otto9_mouth_choice">heart</field>
+                            <next>
+                              <block type="base_delay" id="`Oxz:Gnpq*Cq%zgH}+_`">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="x#v~A_Rq5d+?t1zD@ba#">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="eDRWJ~eIt|cUT5SYQqVM">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="fLE%/;7iWP}wOpm]B`hh">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE56">
+                      <block type="text_char" id="^NMiFIdO(}.oL1Z3xwKe">
+                        <field name="TEXT">5</field>
+                      </block>
+                    </value>
+                    <statement name="DO56">
+                      <block type="RTTTL_music" id="pY6{y?M-IlFFK9omV,#)">
+                        <field name="PIN_BUZZER">13</field>
+                        <field name="MELODY">_20thCenFox</field>
+                        <next>
+                          <block type="mouth_face" id="(%_gS1*if}Z%DM}`84BR">
+                            <field name="otto9_mouth_choice">okMouth</field>
+                            <next>
+                              <block type="base_delay" id="f4!M#pquI*7.L}YTK!W2">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="b`G+J4%GaXtYJ^yfIzk)">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="m[Ckx69(NLviu4Y|5-fl">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="z-lJP$[*ya8-K,}(SMxz">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE57">
+                      <block type="text_char" id="8ftfRO);}M-Y9oH?Ek}2">
+                        <field name="TEXT">6</field>
+                      </block>
+                    </value>
+                    <statement name="DO57">
+                      <block type="RTTTL_music" id="KFwm7ZO=lbtaR.L9xWv*">
+                        <field name="PIN_BUZZER">13</field>
+                        <field name="MELODY">Bond</field>
+                        <next>
+                          <block type="mouth_face" id=".rFTD9@#t~(v=@]EJQt_">
+                            <field name="otto9_mouth_choice">tongueOut</field>
+                            <next>
+                              <block type="base_delay" id="H*Wn6{T=1B!/t6PrL#1L">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="nC[^cs^ZTBC;`*H%H|=g">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="2UF1^$@-ygCU98mI`O-7">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="@7P^T5]TAW=C1vP+|K=G">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE58">
+                      <block type="text_char" id="Y4ep_i[H*gM.]c4^$R4d">
+                        <field name="TEXT">7</field>
+                      </block>
+                    </value>
+                    <statement name="DO58">
+                      <block type="RTTTL_music" id="}TQ,.kfo.A1m;Wa`*qQ-">
+                        <field name="PIN_BUZZER">13</field>
+                        <field name="MELODY">AllIWant</field>
+                        <next>
+                          <block type="mouth_face" id="R{hKJ`td*jkxzN*D.v,!">
+                            <field name="otto9_mouth_choice">culito</field>
+                            <next>
+                              <block type="base_delay" id="sHoZy:ePlRp]P95%x$nD">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="CXQ$dgwsCE_xW8A=]-kb">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="B{J{b/pH$U#UlM`GaXg0">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="-Z:}jP:Bm#:VUc=nQ%lw">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE59">
+                      <block type="text_char" id="v*yd=zmoO~OOE,Nul5;I">
+                        <field name="TEXT">8</field>
+                      </block>
+                    </value>
+                    <statement name="DO59">
+                      <block type="RTTTL_music" id="%8KRonQefSv{9ET:+)1V">
+                        <field name="PIN_BUZZER">13</field>
+                        <field name="MELODY">PinkPanther</field>
+                        <next>
+                          <block type="mouth_face" id=",2?o4{/VT~Jdyfs8OV/x">
+                            <field name="otto9_mouth_choice">lineMouth</field>
+                            <next>
+                              <block type="base_delay" id="`@7SD5.TLra#Nha-(NK]">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id=".K}?+OblNP6j|`A.V)xe">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="#V.Hjt#g4K)Cr?YUS9-m">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id="M5:pmVi4[WImHB$qQN5n">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE60">
+                      <block type="text_char" id="7d?pfK@|?4)$4yTN_7ou">
+                        <field name="TEXT">9</field>
+                      </block>
+                    </value>
+                    <statement name="DO60">
+                      <block type="RTTTL_music" id="LlAKwX}S^1c-/4n-Zqfy">
+                        <field name="PIN_BUZZER">13</field>
+                        <field name="MELODY">TakeOnMe</field>
+                        <next>
+                          <block type="mouth_face" id="=$v]kDyl81EavApYjpHw">
+                            <field name="otto9_mouth_choice">heart</field>
+                            <next>
+                              <block type="base_delay" id="nuR+CjJwL:ht7W@6j:T~">
+                                <field name="unite">m</field>
+                                <value name="DELAY_TIME">
+                                  <shadow type="math_number" id="I-2e7yc?heco.f?4}5DR">
+                                    <field name="NUM">100</field>
+                                  </shadow>
+                                </value>
+                                <next>
+                                  <block type="variables_set" id="YUQ$xq1KgDh*ed3``}o5">
+                                    <field name="VAR">command</field>
+                                    <value name="VALUE">
+                                      <block type="text_char" id=",lnRL)?[EJ+Xp}w*%M=^">
+                                        <field name="TEXT">0</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <value name="CASE61">
+                      <block type="text_char" id="F-}~*@AcIhN-KKaq:9SO">
+                        <field name="TEXT">0</field>
+                      </block>
+                    </value>
+                    <statement name="DO61">
+                      <block type="otto_home" id="/J_l:jBfF0c+gB5J1#:2">
+                        <next>
+                          <block type="otto_arms_home" id="%h)1X#}E$s3Zu2lYAf_:">
+                            <next>
+                              <block type="mouth_clear" id="jPhGhcdhj}AxA%._rNSw"></block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <statement name="DEFAULT">
+                      <block type="otto_home" id="~U/2(7sC@PHX7SD}OR|!">
+                        <next>
+                          <block type="otto_arms_home" id="-4f!_FeuC6Q{*L]S^Ecg">
+                            <next>
+                              <block type="mouth_clear" id="$WPX6?0S)r:3D(KdJKfx"></block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>
